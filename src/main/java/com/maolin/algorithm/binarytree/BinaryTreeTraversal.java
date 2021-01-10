@@ -1,24 +1,20 @@
 package com.maolin.algorithm.binarytree;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class BinaryTreeTraversal {
 
     public static void main(String[] args) {
-        LinkedList<Integer> vals = new LinkedList<Integer>();
-        vals.add(1);
-        vals.add(2);
-        vals.add(3);
-        vals.add(4);
-        vals.add(5);
-        vals.add(6);
-        vals.add(7);
-        vals.add(8);
-        vals.add(9);
-        vals.add(10);
-        TreeNode treeNode = BinaryTreeUtils.generateBinaryTree(vals);
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.setLeftChild(new TreeNode(2));
+        treeNode.leftChild.setLeftChild(new TreeNode(4));
+        treeNode.leftChild.setRightChild(new TreeNode(5));
+        treeNode.setRightChild(new TreeNode(3));
+
+        System.out.println("PreOder: ");
         preOrderTraverse(treeNode);
+        System.out.println("\nInOder: ");
+        inOrderTraverse(treeNode);
+        System.out.println("\nPostOder: ");
+        postOrderTraverse(treeNode);
     }
 
     public static void preOrderTraverse(TreeNode node) {
@@ -28,5 +24,23 @@ public class BinaryTreeTraversal {
         System.out.print(node.data+" ");
         preOrderTraverse(node.leftChild);
         preOrderTraverse(node.rightChild);
+    }
+
+    public static void inOrderTraverse(TreeNode node) {
+        if(node == null){
+            return;
+        }
+        inOrderTraverse(node.leftChild);
+        System.out.print(node.data+" ");
+        inOrderTraverse(node.rightChild);
+    }
+
+    public static void postOrderTraverse(TreeNode node) {
+        if(node == null){
+            return;
+        }
+        postOrderTraverse(node.leftChild);
+        postOrderTraverse(node.rightChild);
+        System.out.print(node.data+" ");
     }
 }
